@@ -19,5 +19,5 @@ app.get('/books', (req, res) => {
   
 
 app.listen(3000, () =>{
-    console.log('server is on localhost :3000..... bep... \nn beep \nn beeeeeppp... \nn http://localhost:3000')
+    console.log('server is on \n 3000..... bep... \n beep \n beeeeeppp... \n http://localhost:3000')
 })
