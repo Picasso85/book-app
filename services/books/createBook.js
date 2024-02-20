@@ -1,19 +1,18 @@
-import bookData from '../../data/books.json' assert { type: "json" };
-import { v4 as uuid } from 'uuid';
+import { PrismaClient } from '@prisma/client'
 
-const createBook = (title, author, isbn, pages, available, genre) => {
-    const newBook = {
-        id: uuid(),
-        title,
-        author,
-        isbn,
-        pages,
-        available,
-        genre
-      };
+const createBook = async (title, author, isbn, pages, available, genre) => {
+  const prisma = new PrismaClient()
 
-  bookData.books.push(newBook);
-  return newBook;
+  return prisma.book.create({
+    data: {
+      title,
+      author,
+      isbn,
+      pages,
+      available,
+      genre
+    }
+  })
 }
 
-export default createBook;
+export default createBook

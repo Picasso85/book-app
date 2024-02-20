@@ -1,30 +1,27 @@
 {
-  "name": "book-app",
-  "version": "1.0.2",
-  "description": "book app",
+  "name": "express-book-app",
+  "version": "1.0.0",
+  "description": "An example application for Express",
   "main": "index.js",
   "type": "module",
   "prisma": {
-    "seed": "node ./prisma/seed.js"},
-  "scripts": {
-    "dev": "node index.js"
+    "seed": "node ./prisma/seed.js"
   },
-  "keywords": [
-    "book-app"
-  ],
-  "author": "P.H.L. Adamski",
-  "license": "MIT",
+  "scripts": {
+    "dev": "nodemon index.js"
+  },
+  "author": "Kristof Siket",
+  "license": "ISC",
   "dependencies": {
-    "client": "^0.0.1",
+    "@prisma/client": "^5.0.0",
+    "@sentry/node": "^7.57.0",
+    "dotenv": "^16.3.1",
     "express": "^4.18.2",
-    "jsonwebtoken": "^9.0.2",
-    "node": "^21.6.2",
-    "prisma": "^5.9.1",
-    "sentry": "^0.1.2",
-    "uuid": "^9.0.1",
-    "winston": "^3.11.0"
+    "jsonwebtoken": "^9.0.0",
+    "uuid": "^9.0.0",
+    "winston": "^3.9.0"
   },
   "devDependencies": {
-    "nodemon": "^3.0.3"
+    "nodemon": "^2.0.22"
   }
 }

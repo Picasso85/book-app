@@ -4,6 +4,8 @@ import createRecord from '../services/records/createRecord.js'
 import getRecordById from '../services/records/getRecordById.js'
 import updateRecordById from '../services/records/updateRecordById.js'
 import deleteRecord from '../services/records/deleteRecord.js'
+import authMiddleware from '../middleware/auth.js'
+import notFoundErrorHandler from '../middleware/notFoundErrorHandler.js'
 
 const router = express.Router()
 
@@ -18,8 +20,9 @@ router.get('/', (req, res) => {
   }
 })
 
-router.get('/:id', (req, res) => {
-  try {
+router.get(
+  '/:id',
+  (req, res) => {
     const { id } = req.params
     const record = getRecordById(id)
 
@@ -28,13 +31,11 @@ router.get('/:id', (req, res) => {
     } else {
       res.status(200).json(record)
     }
-  } catch (error) {
-    console.error(error)
-    res.status(500).send('Something went wrong while getting record by id!')
-  }
-})
+  },
+  notFoundErrorHandler
+)
 
-router.post('/', (req, res) => {
+router.post('/', authMiddleware, (req, res) => {
   try {
     const { title, artist, year, available, genre } = req.body
     const newRecord = createRecord(title, artist, year, available, genre)
@@ -45,8 +46,10 @@ router.post('/', (req, res) => {
   }
 })
 
-router.put('/:id', (req, res) => {
-  try {
+router.put(
+  '/:id',
+  authMiddleware,
+  (req, res) => {
     const { id } = req.params
     const { title, artist, year, available, genre } = req.body
     const updatedRecord = updateRecordById(
@@ -58,14 +61,14 @@ router.put('/:id', (req, res) => {
       genre
     )
     res.status(200).json(updatedRecord)
-  } catch (error) {
-    console.error(error)
-    res.status(500).send('Something went wrong while updating record by id!')
-  }
-})
+  },
+  notFoundErrorHandler
+)
 
-router.delete('/:id', (req, res) => {
-  try {
+router.delete(
+  '/:id',
+  authMiddleware,
+  (req, res) => {
     const { id } = req.params
     const deletedRecordId = deleteRecord(id)
 
@@ -76,10 +79,8 @@ router.delete('/:id', (req, res) => {
         message: `Record with id ${deletedRecordId} was deleted!`
       })
     }
-  } catch (error) {
-    console.error(error)
-    res.status(500).send('Something went wrong while deleting record by id!')
-  }
-})
+  },
+  notFoundErrorHandler
+)
 
 export default router
