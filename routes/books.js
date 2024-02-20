@@ -1,11 +1,11 @@
-import express from 'express';
-import getBooks from '../services/books/getbooks.js'
+import express from 'express'
+import getBooks from '../services/books/getBooks.js'
 import createBook from '../services/books/createBook.js'
 import getBookById from '../services/books/getBookById.js'
 import updateBookById from '../services/books/updateBookById.js'
 import deleteBook from '../services/books/deleteBook.js'
 
-const router = express.Router();
+const router = express.Router()
 
 router.get('/', (req, res) => {
   try {
@@ -49,7 +49,15 @@ router.put('/:id', (req, res) => {
   try {
     const { id } = req.params
     const { title, author, isbn, pages, available, genre } = req.body
-    const updatedBook = updateBookById(id, title, author, isbn, pages, available, genre)
+    const updatedBook = updateBookById(
+      id,
+      title,
+      author,
+      isbn,
+      pages,
+      available,
+      genre
+    )
     res.status(200).json(updatedBook)
   } catch (error) {
     console.error(error)
@@ -61,7 +69,6 @@ router.delete('/:id', (req, res) => {
   try {
     const { id } = req.params
     const deletedBookId = deleteBook(id)
-
 
     if (!deletedBookId) {
       res.status(404).send(`Book with id ${id} was not found!`)
@@ -76,4 +83,4 @@ router.delete('/:id', (req, res) => {
   }
 })
 
-export default router;
+export default router

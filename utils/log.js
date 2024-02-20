@@ -1,6 +1,8 @@
 import winston from 'winston';
 
+// App-Level Log Middleware
 // creating the logger
+
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
