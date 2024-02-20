@@ -4,6 +4,8 @@
   "description": "book app",
   "main": "index.js",
   "type": "module",
+  "prisma": {
+    "seed": "node ./prisma/seed.js"},
   "scripts": {
     "dev": "node index.js"
   },
@@ -13,9 +15,14 @@
   "author": "P.H.L. Adamski",
   "license": "MIT",
   "dependencies": {
+    "client": "^0.0.1",
     "express": "^4.18.2",
+    "jsonwebtoken": "^9.0.2",
     "node": "^21.6.2",
-    "uuid": "^9.0.1"
+    "prisma": "^5.9.1",
+    "sentry": "^0.1.2",
+    "uuid": "^9.0.1",
+    "winston": "^3.11.0"
   },
   "devDependencies": {
     "nodemon": "^3.0.3"
