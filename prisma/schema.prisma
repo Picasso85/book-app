@@ -38,7 +38,7 @@ model Record {
 }
 
 model Order {
-  id             String           @id @default(uuid())
+  id             String    @id @default(uuid())
   order_type     OrderType
   book_id        String?
   record_id      String?
@@ -47,9 +47,9 @@ model Order {
   delivery_date  DateTime?
   payment_method String
   comment        String?
-  user           User             @relation(fields: [user_id], references: [id])
-  book           Book?             @relation(fields: [book_id], references: [id])
-  record         Record?           @relation(fields: [record_id], references: [id])
+  user           User      @relation(fields: [user_id], references: [id])
+  book           Book?     @relation(fields: [book_id], references: [id])
+  record         Record?   @relation(fields: [record_id], references: [id])
 
   @@index([book_id])
   @@index([user_id])
