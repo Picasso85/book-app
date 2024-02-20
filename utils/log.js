@@ -1,21 +1,15 @@
-import winston from 'winston';
-
-// App-Level Log Middleware
-// creating the logger
+import winston from 'winston'
 
 const logger = winston.createLogger({
   level: 'info',
   format: winston.format.json(),
-  defaultMeta: { service: 'bookstore-api' },
-});
+  defaultMeta: { service: 'bookstore-api' }
+})
 
-// adding a console transport
 if (process.env.NODE_ENV !== 'production') {
-  logger.add(
-    new winston.transports.Console({
-      format: winston.format.simple(),
-    }),
-  );
+  logger.add(new winston.transports.Console({
+    format: winston.format.simple()
+  }))
 }
 
-export default logger;
+export default logger
